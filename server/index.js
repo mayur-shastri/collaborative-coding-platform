@@ -51,11 +51,11 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(express.json());
 
-const corsUrl = process.env.NODE_ENV === "production" ? 
-'https://quizaroo.onrender.com' : 'http://localhost:5173';
+// const corsUrl = process.env.NODE_ENV === "production" ? 
+// 'https://quizaroo.onrender.com' : 'http://localhost:5173';
 
 const corsOptions = {
-    origin: corsUrl,
+    origin: '*',
     credentials: true,
     optionSuccessStatus: 200,
 }
