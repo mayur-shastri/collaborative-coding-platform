@@ -32,6 +32,8 @@ const sessionConfig = {
         httpOnly: true,
         maxAge: 1000*60*60*24*7, // 1 week
         expires: Date.now() + 1000*60*60*24*7,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'None',
     },
     store: MongoStore.create({ mongoUrl: mongoUrl })
 }
@@ -61,6 +63,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));  // Handle preflight requests
 
 const port = process.env.PORT || 3000;
 
@@ -71,7 +74,7 @@ server.listen(port, ()=>{
 app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["'none'"],
-        connectSrc: ["'self'", 'ws:'],
+        connectSrc: ["'self'", 'ws:', 'https://quizaroo.onrender.com'],
     }
 }));
 
