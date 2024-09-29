@@ -33,7 +33,7 @@ const sessionConfig = {
         maxAge: 1000*60*60*24*7, // 1 week
         expires: Date.now() + 1000*60*60*24*7,
         secure: process.env.NODE_ENV === 'production',
-        // sameSite: 'none',
+        sameSite: 'none',
     },
     store: MongoStore.create({ mongoUrl: mongoUrl })
 }
@@ -60,6 +60,8 @@ const corsOptions = {
     origin: corsUrl,
     credentials: true,
     optionSuccessStatus: 200,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Ensure all HTTP methods are handled
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow required headers
 }
 
 app.use(cors(corsOptions));
