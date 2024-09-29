@@ -4,6 +4,7 @@ const isLoggedIn = (req,res,next)=>{
     // } else{
     //     res.status(401).send({message: "You aren't logged in!"});
     // }
+    next();
 }
 
 const isAuthorized = (req,res,next)=>{
@@ -12,6 +13,7 @@ const isAuthorized = (req,res,next)=>{
     //     return next();
     // } 
     // res.status(401).send({message: "You aren't authorized to perform this action"});
+    next();
 }
 
 module.exports = {isLoggedIn, isAuthorized};
