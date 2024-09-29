@@ -10,7 +10,7 @@ export default function Dashboard() {
     const [userData, setUserData] = useState({});
     useEffect(() => {
         const getUserData = async () => {
-            const userData = await configuredAxios.get(`/userdata`);
+            const userData = await configuredAxios.get('/userdata');
             return userData.data;
             /*  
             The userData object looks like this:

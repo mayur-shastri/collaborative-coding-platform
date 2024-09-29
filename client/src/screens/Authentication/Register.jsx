@@ -28,6 +28,8 @@ export default function Register() {
                 });
             console.log(res.data.message);
             if (res.data.message === 'Registered Successfully!') {
+                console.log(res);
+                console.log(res.data);
                 navigate('/app/home');
             }
             setFlashType(res.data.flashType);
