@@ -3,9 +3,10 @@ const {isLoggedIn} = require('../Middleware/Auth');
 const User = require('../Models/User');
 const catchAsync = require('../Utilities/catchAsync');
 
-router.route('/userdata')
+router.route(':id/userdata')
     .get(isLoggedIn, catchAsync(async (req,res)=>{
-        const id = req.user._id;
+        // const id = req.user._id;
+        const {id} = req.params;
         // const user = await User.findById(id).populate('quizzes');
         const user = await User.findById(id).populate({
             path: 'quizzes',
