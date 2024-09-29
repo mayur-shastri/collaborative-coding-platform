@@ -28,6 +28,7 @@ import PresentModeScreen from './screens/Presentation/Creator/PresentModeScreens
 import PresentationEnded from './screens/Presentation/Participant/PresentationEnded.jsx'
 import Participations from './screens/Participations/Participations.jsx'
 import ResultScreen from './screens/Participations/ResultScreen.jsx'
+import UserIdProvider from './context providers/UserId/UserIdContextProvider.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -105,7 +106,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <ThemeProvider theme={theme}>
+    <UserIdProvider>
     <RouterProvider router={router} />
+    </UserIdProvider>
   </ThemeProvider>
   // </React.StrictMode>,
 )
