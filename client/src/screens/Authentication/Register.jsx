@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { instance as configuredAxios } from '../../axiosConfig';
 import Typography from '@mui/material/Typography'
 import AuthAnimation from './Animations/AuthAnimation';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import FlashContext from '../../context providers/Flash/FlashContext';
 import FlashCard from '../../components/FlashCard/FlashCard';
 import UserIdContext from '../../context providers/UserId/UserIdContext';
@@ -20,6 +20,10 @@ export default function Register() {
     const watchedPassword = watch("password");
     const watchedEmail = watch("email");
 
+    useEffect(()=>{
+        navigate('/app/home');
+      }, [userId, navigate]);
+    
     const submitForm = async () => {
         try {
             const res = await configuredAxios.post('/register',
@@ -31,7 +35,6 @@ export default function Register() {
             console.log(res.data.message);
             if (res.data.message === 'Registered Successfully!') {
                 setUserId(res.data.user._id);
-                navigate('/app/home');
             }
             setFlashType(res.data.flashType);
             setFlashMessage(res.data.message);
