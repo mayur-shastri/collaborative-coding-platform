@@ -17,7 +17,7 @@ export default function Dashboard() {
             const url = `${userId}/userData`;
             console.log(url);
             const userData = await configuredAxios.get(url);
-            userData.data._id = userId;
+            userData.data.user._id = userId;
             return userData.data;
             /*  
             The userData object looks like this:
