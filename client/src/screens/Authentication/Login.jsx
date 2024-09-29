@@ -21,6 +21,7 @@ export default function Login() {
 
   useEffect(()=>{
     if(userId){
+      console.log(userId);
       navigate('/app/home');
     }
   }, [userId, navigate]);
