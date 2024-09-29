@@ -14,8 +14,9 @@ export default function Dashboard() {
 
     useEffect(() => {
         const getUserData = async () => {
-
-            const userData = await configuredAxios.get(`${userId}/userData`);
+            const url = `${userId}/userData`;
+            console.log(url);
+            const userData = await configuredAxios.get(url);
             userData.data._id = userId;
             return userData.data;
             /*  
