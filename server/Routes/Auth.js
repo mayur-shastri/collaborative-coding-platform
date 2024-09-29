@@ -28,7 +28,7 @@ router.route('/register')
                     return res.status(500).send({ message: err.message, flashType: 'danger'});
                 }
                 res.cookie('session', req.sessionID, setCookieOptions);
-                return res.status(200).send({ message: 'Registered Successfully!', flashType: 'success'});
+                return res.status(200).send({ message: 'Registered Successfully!', flashType: 'success', user: user });
             });
         });
     }));
@@ -47,7 +47,7 @@ router.route('/login')
                     return res.status(500).send({ message: err.message, flashType: 'danger'});
                 }
                 res.cookie('session', req.sessionID, setCookieOptions);
-                return res.status(200).send({ message: 'Login successful!', flashType: 'success' });
+                return res.status(200).send({ message: 'Login successful!', flashType: 'success', user: user });
             });
         })(req, res, next);
     });

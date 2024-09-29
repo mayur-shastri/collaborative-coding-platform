@@ -7,12 +7,14 @@ import AuthAnimation from './Animations/AuthAnimation';
 import { useContext } from 'react';
 import FlashContext from '../../context providers/Flash/FlashContext';
 import FlashCard from '../../components/FlashCard/FlashCard';
+import UserIdContext from '../../context providers/UserId/UserIdContext';
 
 export default function Register() {
 
     const navigate = useNavigate();
     const { isVisible, setIsVisible, setFlashType, setFlashMessage } = useContext(FlashContext);
     const { register, watch, formState: { errors }, handleSubmit } = useForm();
+    const {userId, setUserId} = useContext(UserIdContext);
 
     const watchedUsername = watch("username");
     const watchedPassword = watch("password");
@@ -28,8 +30,7 @@ export default function Register() {
                 });
             console.log(res.data.message);
             if (res.data.message === 'Registered Successfully!') {
-                console.log(res);
-                console.log(res.data);
+                setUserId(res.data.user._id);
                 navigate('/app/home');
             }
             setFlashType(res.data.flashType);

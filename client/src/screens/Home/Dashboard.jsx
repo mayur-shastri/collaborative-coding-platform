@@ -1,16 +1,22 @@
 import { instance as configuredAxios } from '../../axiosConfig';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Typography from '@mui/material/Typography'
 import QuizInfoCard from '../../components/QuizInfoCard/QuizInfoCard';
 import MyButton from '../../components/Button/MyButton';
 import { useNavigate } from 'react-router-dom';
+import UserIdContext from '../../context providers/UserId/UserIdContext';
 
 export default function Dashboard() {
 
     const [userData, setUserData] = useState({});
+
+    const {userId, setUserId} = useContext(UserIdContext);
+
     useEffect(() => {
         const getUserData = async () => {
-            const userData = await configuredAxios.get('/userdata');
+
+            const userData = await configuredAxios.get(`${userId}/userData`);
+            userData.data._id = userId;
             return userData.data;
             /*  
             The userData object looks like this:

@@ -7,12 +7,13 @@ import AuthAnimation from './Animations/AuthAnimation';
 import { useContext } from 'react';
 import FlashContext from '../../context providers/Flash/FlashContext';
 import FlashCard from '../../components/FlashCard/FlashCard';
+import UserIdContext from '../../context providers/UserId/UserIdContext';
 
 export default function Login() {
 
   const navigate = useNavigate();
   const { isVisible, setIsVisible, setFlashType, setFlashMessage } = useContext(FlashContext);
-
+  const {userId, setUserId} = useContext(UserIdContext);
   const { register, watch, formState: { errors }, handleSubmit } = useForm();
 
   const watchedUsername = watch("username");
@@ -26,6 +27,7 @@ export default function Login() {
           password: watchedPassword
         });
       if (res.data.message === 'Login successful!') {
+        setUserId(res.data.user._id);
         navigate('/app/home');
       }
       setFlashType(res.data.flashType);
