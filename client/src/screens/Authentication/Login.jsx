@@ -20,7 +20,9 @@ export default function Login() {
   const watchedPassword = watch("password");
 
   useEffect(()=>{
-    navigate('/app/home');
+    if(userId){
+      navigate('/app/home');
+    }
   }, [userId, navigate]);
 
   const submitForm = async () => {

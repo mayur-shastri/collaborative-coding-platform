@@ -21,7 +21,9 @@ export default function Register() {
     const watchedEmail = watch("email");
 
     useEffect(()=>{
-        navigate('/app/home');
+        if(userId){
+            navigate('/app/home');
+        }
       }, [userId, navigate]);
     
     const submitForm = async () => {
